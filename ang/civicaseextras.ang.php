@@ -1,15 +1,20 @@
 <?php
 
+use CRM_Civicase_Helper_GlobRecursive as GlobRecursive;
+
 /**
  * Returns a list of Civicaseextras JS files to be bundled.
  *
  * @return array
  */
 function getCivicaseExtrasJSFiles () {
-  return array_merge(array(
+  return array_merge([
     'assetBuilder://visual-bundle.js',
     'ang/civicaseextras.js'
-  ), glob_recursive(dirname(__FILE__) . '/civicaseextras/*.js'));
+  ], GlobRecursive::getRelativeToExtension(
+    'uk.co.compucorp.civicaseextras',
+    'ang/civicase-base/*.js'
+  ));
 }
 
 /**
